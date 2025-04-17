@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.kotak {
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    background: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.judul h1 {
+    text-align: center;
+    font-size: 24px;
+}
+
+.judul a {
+    text-decoration: none;
+    color: #007BFF;
+    margin: 0 10px;
+}
+
+.judul a:hover {
+    color: #0056b3;
+}
+
+.subjudul h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #007BFF;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

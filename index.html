@@ -1,68 +1,156 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="./resources/ol.css">
-        <link rel="stylesheet" href="resources/fontawesome-all.min.css">
-        <link rel="stylesheet" type="text/css" href="resources/horsey.min.css">
-        <link rel="stylesheet" type="text/css" href="resources/ol3-search-layer.min.css">
-        <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
-        <link rel="stylesheet" href="./resources/qgis2web.css">
-        <style>
-        html, body {
-            background-color: #ffffff;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PERKARA PERTANAHAN KABUPATEN SIDOARJO</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
         }
-        .ol-control > * {
-            background-color: #f8f8f8!important;
-            color: #444444!important;
-            border-radius: 0px;
-        }
-        .ol-attribution a, .gcd-gl-input::placeholder, .search-layer-input-search::placeholder {
-            color: #444444!important;
-        }
-        .search-layer-input-search {
-            background-color: #f8f8f8!important;
-        }
-        .ol-control > *:focus, .ol-control >*:hover {
-            background-color: rgba(248, 248, 248, 0.7)!important;
-        } 
-        .ol-control {
-            background-color: rgba(255,255,255,.4) !important;
-            padding: 2px !important;
-        } 
-        </style>
 
-        <style>
-        html, body, #map {
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            padding: 0;
-            margin: 0;
+            object-fit: cover;
+            z-index: -1;
         }
-        </style>
-        <title></title>
-    </head>
-    <body>
-        <div id="map">
-            <div id="popup" class="ol-popup">
-                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                <div id="popup-content"></div>
-            </div>
-        </div>
-        <script src="resources/qgis2web_expressions.js"></script>
-        <script src="./resources/functions.js"></script>
-        <script src="./resources/ol.js"></script>
-        <script src="resources/horsey.min.js"></script>
-        <script src="resources/ol3-search-layer.js"></script>
-        <script src="./resources/ol-layerswitcher.js"></script>
-        <script src="layers/ADMINISTRASIDESA_AR_25K_1.js"></script><script src="layers/bidang_2.js"></script>
-        <script src="styles/ADMINISTRASIDESA_AR_25K_1_style.js"></script><script src="styles/bidang_2_style.js"></script>
-        <script src="./layers/layers.js" type="text/javascript"></script> 
-        <script src="./resources/Autolinker.min.js"></script>
-        <script src="./resources/qgis2web.js"></script>
-    </body>
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .kotak {
+            position: relative;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        nav {
+            display: flex;
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 10px; 
+            background-color: rgba(255, 255, 255, 0.2); 
+            border-radius: 10px; 
+        }
+
+        nav a {
+            color: #ffcc00; 
+            text-decoration: none; 
+            margin-right: 20px; 
+        }
+
+        nav a:hover {
+            color: #ff6600; 
+        }
+
+        .judul h1 {
+            margin: 0;
+            text-align: left; 
+        }
+
+        .blok {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .blok h2 {
+            font-size: 2em;
+            color: #fff;
+        }
+
+        .deskripsi {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .kotak {
+                margin: 20px;
+                padding: 15px;
+            }
+            
+            nav a {
+                margin-right: 10px; 
+                font-size: smaller; 
+            }
+            
+            .judul h1 {
+                font-size: 1.2em;
+                text-align: center; 
+            }
+
+            .blok h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="your-video-file.mp4" type="video/mp4">
+    </video>
+    
+    <div class="overlay"></div>
+    <div class="kotak">
+        <nav>
+           <div class="logo">
+               <img src="logo-stpn-png.png" alt="Logo" style="height:50px;">
+           </div>
+           <div class="judul">
+               <h1>
+                   <a href="index.html">Home</a> || 
+                   <a href="profile.html">Profile</a> || 
+                   <a href="petaa.html">Peta</a> || 
+               </h1>
+           </div>
+       </nav>
+
+       <div class="blok">
+           <div class="subjudul">
+               <h2>KKNP-PTLP KANTAH SIDOARJO 2025</h2>
+
+               <!-- Video content -->
+               <video controls>
+                   <source src="Presiden Soeharto di HUT ABRI ke 52 Memakai Seragam Militer Jenderal Bintang Lima.mp4">
+               </video>
+           </div>
+
+           <div class="deskripsi">
+               <p>Selamat datang di website Perkara Pertanahan Kabupaten Sidoarjo...</p>
+               <p>Di sini Anda dapat menemukan informasi mengenai kebijakan pertanahan...</p>
+           </div>
+
+           <!-- Additional content -->
+           <div class="blok">
+               <h2>Menuju Tab Peta dan Profil</h2>
+               <figure>
+                   <a href="petaa.html">
+                       <img src="Peta_Jawa_Timur_150x250_satelit_resize__37080.jpg" alt="Peta Kabupaten Sidoarjo" width="600" height="400" title="Peta Kabupaten Sidoarjo"> 
+                   </a>
+                   <figcaption>Peta Kabupaten Sidoarjo yang menunjukkan lokasi-lokasi penting.</figcaption>
+               </figure>
+
+               <figure>
+                   <img src="profil-sidoarjo.jpg" alt="Profil Kabupaten Sidoarjo" width="600" height="400" title="Profil Kabupaten Sidoarjo">
+                   <figcaption>Profil Kabupaten Sidoarjo, termasuk informasi demografis dan budaya.</figcaption>
+               </figure>
+           </div>
+       </div>
+    </div>
+</body>
 </html>
